@@ -1,2 +1,2 @@
-# TLmapComp
- A map compiler to convert a .map valve stype map into a custom zip archive
+# triLoxo Map Compiler
+ This is a CLI for converting a valve standard .MAP file into a json containing mesh and entity data all packaged in an archive along with neccesaties.
