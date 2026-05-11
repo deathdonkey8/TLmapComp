@@ -3,7 +3,7 @@ import ErrorTable
 
 prefix = "[AUDIO_FETCH]"
 
-def get_sound_files(level, soundFolder) -> List[str]:
+def get_sound_files(level, soundFolder) -> list[str]:
     '''Get the required sound files used in level.'''
     unique_sounds = []
     sound_paths = []
