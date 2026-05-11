@@ -4,7 +4,7 @@ import os
 import re
 import ErrorTable
 
-game = "WANKER"
+game = "ParanormalContainmentBureau"
 prefix = "[PARSER]"
 level = MapClasses.Map()
 
