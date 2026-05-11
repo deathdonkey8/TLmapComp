@@ -2,6 +2,7 @@ import math
 import ErrorTable
 from PIL import Image
 
+
 prefix = "[ATLAS]"
 Atlas = {}
 texture_resolution = 255

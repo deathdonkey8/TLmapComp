@@ -20,7 +20,7 @@ def get_sound_files(level, soundFolder) -> List[str]:
 
     if len(unique_sounds) == 0:
         print(prefix, "No sound files needed.")
-        return
+        return None
 
     for sound in unique_sounds:
         soundPath = soundFolder / sound

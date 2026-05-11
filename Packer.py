@@ -9,12 +9,17 @@ prefix = "[PACKER]"
 
 st = time.time()
 
-def pack_map(level, sound_files, atlas, map_path, start_time):
+soundNeeded = False
+
+def pack_map(level, sound_files, atlas, map_path, start_time, outputFolder):
     '''Pack map into a geb file'''
 
     st = start_time
+
+    if sound_files is not None: soundNeeded = True
+
     generate_level_json(level, atlas)
-    generate_geb_archive(sound_files, map_path)
+    generate_geb_archive(sound_files, map_path, outputFolder)
     tidy_files()
 
 def generate_level_json(level, atlas):
@@ -55,10 +60,11 @@ def generate_level_json(level, atlas):
 
     print(prefix, "Json created.")
 
-def generate_geb_archive(sound_files, map_file):
+
+def generate_geb_archive(sound_files, map_file, outputFolder):
     '''Create a zip archive with the .geb extention and copy needed files over.'''
 
-    map_name = f"{Path(map_file).stem}.geb"
+    map_name = f"{Path(outputFolder) / Path(map_file).stem}.geb"
 
     print(prefix, f"Compiing {map_name}")
 
@@ -66,10 +72,12 @@ def generate_geb_archive(sound_files, map_file):
         geb.write("level.json")
         geb.write("atlas.png")
         #geb.write(PCOL) - wit until this is set up
-        for sound in sound_files:
-            geb.write(sound, arcname=f"/sound/{Path(sound).name}")
+        if soundNeeded:
+            for sound in sound_files:
+                geb.write(sound, arcname=f"/sound/{Path(sound).name}")
 
     print(prefix, f"\033[1m\033[92mMap compiled! ({"{:.1f}".format(time.time() - st)}s)\033[0m")
+
 
 def tidy_files():
     '''Deletes temporary files after they are needed.'''
