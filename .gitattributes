@@ -2,7 +2,7 @@
 * text=auto
 
 # Ignore build/dist output from language stats
-build/* linguist-generated=true
-dist/* linguist-generated=true
+build/** linguist-generated=true
+dist/** linguist-generated=true
 __pycache__/* linguist-generated=true
 *.spec linguist-generated=true
