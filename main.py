@@ -32,7 +32,7 @@ def valid_path(path):
 parseArgs = argparse.ArgumentParser(description="Compile map to output folder")
 
 parseArgs.add_argument("--map",     required=True,      type=valid_path,    help="Path to map file")
-parseArgs.add_argument("--tex",     required=False,     type=valid_path,    help="Path to texture folder")
+parseArgs.add_argument("--tex",     required=True,     type=valid_path,    help="Path to texture folder")
 parseArgs.add_argument("--out",     required=True,      type=valid_path,    help="Path to output location")
 parseArgs.add_argument("--sound",   required=False,     type=valid_path,    help="Path to sound folder")
 

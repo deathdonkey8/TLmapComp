@@ -116,7 +116,7 @@ def parse_entities(fileContent) -> list[MapClasses.Entity]:
             entities.append(current_entity)
             continue
         elif line == "}" and entity_depth > 1:
-            print(prefix, f"↳brush {brush_count} parsed")
+            print(prefix, f"-> brush {brush_count} parsed")
             entity_depth -= 1
             brush_count += 1
             current_entity.brushes.append(current_brush)
