@@ -43,8 +43,6 @@ to be used directly inside custom rendering or gameplay pipelines.
 
 ## Requirements
 
-- Node.js 18+ *(if applicable)*
-- C++20 compiler *(if applicable)*
 - Windows / Linux
 
 ## Clone Repository
@@ -100,15 +98,11 @@ TLmapComp mymap.map --archive level.tlx
 Example generated archive contents:
 
 ```text
-level.tlx
-├── meshes/
-│   ├── worldspawn.json
-│   ├── props.json
-│   └── collision.json
-├── entities.json
-├── materials.json
-├── metadata.json
-└── manifest.json
+level.geb
+├── sounds/
+│   └── drip.mp3
+├── level.json
+└── atlas.png
 ```
 
 ---
@@ -120,8 +114,8 @@ level.tlx
 ```json
 {
   "classname": "light",
-  "origin": [128, 64, 256],
-  "intensity": 400
+  "origin": "128, 64, 256",
+  "intensity": "400"
 }
 ```
 
@@ -130,8 +124,8 @@ level.tlx
 ```json
 {
   "vertices": [...],
-  "indices": [...],
-  "material": "brick/wall01"
+  "triangles": [...],
+  "material": "blocks.png"
 }
 ```
 
@@ -145,21 +139,19 @@ level.tlx
 | Entities | ✅ |
 | Texture alignment | ✅ |
 | Material references | ✅ |
-| Multiple worlds | 🚧 |
-| Displacements | 🚧 |
+| Displacements | ❌ |
 | Curved surfaces | ❌ |
 
 ---
 
 # CLI Options
 
-| Option | Description |
-|---|---|
-| `-o, --output` | Output directory |
-| `--archive` | Create packaged archive |
-| `--pretty-json` | Pretty-print generated JSON |
-| `--no-materials` | Skip material extraction |
-| `--verbose` | Verbose logging |
+| Option | Description | Required |
+|---|---|---|
+| `--map` | Map file | ✅ |
+| `--out` | Output directory | ✅ |
+| `--tex` | Texture directory | ✅ |
+| `--sound` | Sound folder - for baked level sound | ❌ |
 
 ---
 
@@ -170,8 +162,14 @@ level.tlx
 3. Run TriLoxo Map Compiler
 4. Import generated archive into your engine/runtime
 
+EXE
 ```bash
-triloxo-compiler test.map --archive test.tlx
+TLMC.exe --map {Map File} --tex {Texture directory} --out {Output directory}
+```
+
+Python
+```bash
+main.py --map {Map File} --tex {Texture directory} --out {Output directory}
 ```
 
 ---
@@ -183,18 +181,6 @@ TriLoxo Map Compiler aims to:
 - preserve classic brush mapping workflows
 - provide engine-friendly structured data
 - support moddable/custom engines
-
----
-
-# Roadmap
-
-- BSP support
-- Geometry optimization
-- Collision mesh generation
-- Lightmap baking support
-- Incremental compilation
-- Plugin system
-- glTF export
 
 ---
 
@@ -217,4 +203,4 @@ MIT License
 
 # Credits
 
-Inspired by classic Valve mapping workflows and modern engine tooling pipelines.
+.MAP files - file format description, algorithms, and code By Stefan Hajnoczi
