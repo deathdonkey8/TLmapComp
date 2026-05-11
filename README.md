@@ -39,57 +39,58 @@ to be used directly inside custom rendering or gameplay pipelines.
 
 ---
 
-# Installation
-
-## Requirements
-
+ 
+## Installation
+ 
+### Requirements
+ 
+- Python 3.x
 - Windows / Linux
-
-## Clone Repository
-
+  
+### Clone Repository
+ 
 ```bash
 git clone https://github.com/deathdonkey8/TLmapComp.git
 cd TLmapComp
 ```
-
-## Build
-
-### Example (CMake)
-
+ 
+### Install Dependencies
+ 
 ```bash
-mkdir build
-cd build
-cmake ..
-cmake --build .
+pip install -r requirements.txt
 ```
-
-### Example (Node.js)
-
+ 
+### Build Executable
+ 
 ```bash
-npm install
+py -m PyInstaller --onefile --name=TLMC main.py
 ```
+ 
+The compiled executable will be output to `dist/TLMC.exe`.
+ 
 
 ---
-
-# Usage   *this needs changing
-
-## Basic Command
-
+ 
+## Usage
+ 
+### Python
+ 
 ```bash
-TLmapComp mymap.map
+python main.py --map {Map File} --tex {Texture directory} --out {Output directory}
 ```
-
-## Specify Output
-
+ 
+### Executable
+ 
 ```bash
-TLmapComp mymap.map -o compiled/
+TLMC.exe --map {Map File} --tex {Texture directory} --out {Output directory}
 ```
-
-## Package Archive
-
-```bash
-TLmapComp mymap.map --archive level.tlx
-```
+ 
+### TrenchBroom Compile Profile
+ 
+Add a **Run Tool** task in TrenchBroom's compile dialog:
+ 
+- **Tool Path:** `{path to TLMC.exe}`
+- **Parameters:** `--map ${MAP_FULL_NAME} --tex {Texture directory} --out {Output directory}`
 
 ---
 
@@ -164,12 +165,12 @@ level.geb
 
 EXE
 ```bash
-TLMC.exe --map {Map File} --tex {Texture directory} --out {Output directory}
+TLMC.exe --map ~/Documents/test.map --tex ~/Documents/textures --out ~/Documents
 ```
 
 Python
 ```bash
-main.py --map {Map File} --tex {Texture directory} --out {Output directory}
+Python main.py --map ~/Documents/test.map --tex ~/Documents/textures --out ~/Documents
 ```
 
 ---
