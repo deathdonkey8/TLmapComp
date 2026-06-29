@@ -71,7 +71,7 @@ def intersect_faces(level) -> MapClasses.Map:
                                 brush.faces[i].vertex.append(vert)
                                 brush.faces[j].vertex.append(vert)
                                 brush.faces[k].vertex.append(vert)
-    for brush in entity.brushes:
+        for brush in entity.brushes:
             for face in brush.faces:
                 if len(face.vertex) >= 3:
                     face.vertex = sort_vertex(face.vertex, face.plane.normal)
