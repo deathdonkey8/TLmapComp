@@ -30,8 +30,8 @@ def make_atlas_texture(unique_textures, texture_folder):
         print(ErrorTable.e3)
         return None #Max textuyre check
 
-    atlas_width = min(len(unique_textures), 16) * 256
-    atlas_height = math.ceil(len(unique_textures) / 16) * 256
+    atlas_width = min(len(unique_textures), 16) * 255
+    atlas_height = math.ceil(len(unique_textures) / 16) * 255
     atlas_image = Image.new("RGBA", (atlas_width, atlas_height), (0, 0, 0, 0))
 
     for index, texture in enumerate(unique_textures):
@@ -47,8 +47,8 @@ def make_atlas_texture(unique_textures, texture_folder):
         row = index // 16
         column = index % 16
 
-        paste_x = column * 256
-        paste_y = row * 256
+        paste_x = column * 255
+        paste_y = row * 255
 
         atlas_image.paste(img, (paste_x, paste_y))
         Atlas[texture] = (paste_x, paste_y)
